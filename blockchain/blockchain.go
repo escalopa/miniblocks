@@ -1,33 +1,36 @@
 package blockchain
 
 import (
+	"bytes"
 	"errors"
-	"reflect"
-
-	"github.com/escalopa/myblocks/block"
 )
 
 type Blockchain struct {
-	Blocks []*block.Block
+	Blocks []*Block
 }
 
 func New() *Blockchain {
-	return &Blockchain{[]*block.Block{block.NewGenesis()}}
+	bc := &Blockchain{Blocks: []*Block{NewGenesis()}}
+	return bc
 }
 
 func (bc *Blockchain) AddBlock(data string) error {
-	newBlock := block.New(data, bc.Blocks[len(bc.Blocks)-1].Hash)
+	prevHash := bc.Blocks[len(bc.Blocks)-1].Hash
+	newBlock, err := NewBlock(data, prevHash)
+	if err != nil {
+		return err
+	}
 	bc.Blocks = append(bc.Blocks, newBlock)
-	if err := bc.IsValidBlock(newBlock); err != nil {
-		return errors.New("Invalid Block")
+	if !bc.ValidateState() {
+		// Drop the latest block
+		bc.Blocks = bc.Blocks[:len(bc.Blocks)-1]
+		return errors.New("invalid prevHash sequence")
 	}
 	return nil
 }
 
-func (bc *Blockchain) IsValidBlock(b *block.Block) error {
-	// Compare `b.PrevHash` with the latest hash in the blockchain
-	if reflect.DeepEqual(b.PrevHash, bc.Blocks[len(bc.Blocks)-1].Hash) {
-		return errors.New("Block.PrevHash != Blockchain latest block hash")
-	}
-	return nil
+func (bc *Blockchain) ValidateState() bool {
+	prevBlock := bc.Blocks[len(bc.Blocks)-2]
+	lastBlock := bc.Blocks[len(bc.Blocks)-1]
+	return bytes.Equal(prevBlock.Hash, lastBlock.PrevHash)
 }
