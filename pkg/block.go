@@ -29,10 +29,7 @@ func (b *Block) Serialize() (bb []byte, err error) {
 // @param data - the byte array representing the block
 // @return bb - the block
 // @return err - the error if any
-func (b *Block) Deserialize(data []byte) (bb *Block, err error) {
-	err = gob.NewDecoder(bytes.NewReader(data)).Decode(b)
-	if err != nil {
-		return nil, err
-	}
-	return b, nil
+func (b *Block) Deserialize(data []byte) error {
+	err := gob.NewDecoder(bytes.NewReader(data)).Decode(b)
+	return err
 }
