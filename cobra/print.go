@@ -7,7 +7,7 @@ import (
 )
 
 var printCmd = &cobra.Command{
-	Use:     "print",
+	Use:     "print -c [count]",
 	Short:   "Prints `n` amount of blocks in the chain",
 	Long:    `Prints all the blocks in the chain`,
 	Run:     printBlocks,

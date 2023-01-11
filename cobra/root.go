@@ -17,10 +17,10 @@ var (
 
 var (
 	rootCmd = &cobra.Command{
-		Use:     "blockchain [command]",
+		Use:     "miniblock [command]",
 		Short:   "Blockchain operations",
 		Long:    `Blockchain operations`,
-		Example: "blockchain block add --data 'some data' - adds a block to the blockchain",
+		Example: "miniblock print -c 1\nminiblock block create -d 'some data'",
 	}
 )
 

@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/escalopa/myblocks/badger"
 	"github.com/escalopa/myblocks/blockchain"
@@ -15,6 +16,7 @@ const (
 func main() {
 	var err error
 
+	defer os.Exit(0)
 	// Init Database
 	db, err := badger.New(dbPath)
 	if err != nil {
