@@ -8,16 +8,18 @@ import (
 	"math"
 	"math/big"
 	"strconv"
+
+	"github.com/escalopa/myblocks/pkg"
 )
 
 type ProofOfWork struct {
-	Block  *Block
+	Block  *pkg.Block
 	Target *big.Int
 }
 
 const Difficulty = 18
 
-func NewProof(b *Block) *ProofOfWork {
+func NewProof(b *pkg.Block) *ProofOfWork {
 	target := big.NewInt(1)
 	target.Lsh(target, uint(256-Difficulty))
 	pow := &ProofOfWork{b, target}

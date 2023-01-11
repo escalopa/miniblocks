@@ -3,12 +3,25 @@ package main
 import (
 	"log"
 
+	"github.com/escalopa/myblocks/badger"
 	"github.com/escalopa/myblocks/blockchain"
+)
+
+const (
+	dbPath = "./tmp/blocks"
 )
 
 func main() {
 	var err error
-	bc, err := blockchain.New()
+
+	// Init Database
+	db, err := badger.New(dbPath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	bc, err := blockchain.New(db)
 	if err != nil {
 		log.Fatal(err)
 	}
