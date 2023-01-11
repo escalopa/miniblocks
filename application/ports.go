@@ -4,11 +4,11 @@ import "github.com/escalopa/myblocks/pkg"
 
 type IBlockchain interface {
 	AddBlock(data string) error
-	NewIterator() IBlockchainIterator
+	NewIterator() (IBlockchainIterator, error)
 }
 
 type IBlockchainIterator interface {
-	Next() *pkg.Block
+	Next() (*pkg.Block, error)
 }
 
 type IDatabase interface {
@@ -16,4 +16,8 @@ type IDatabase interface {
 	GetBlock(hash []byte) (*pkg.Block, error)
 	GetLastHash() ([]byte, error)
 	Close() error
+}
+
+type ICli interface {
+	Run()
 }

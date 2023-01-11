@@ -71,12 +71,3 @@ func newBlock(data string, prevHash []byte) (*pkg.Block, error) {
 	}
 	return b, nil
 }
-
-// // toInt converts a byte slice to an int
-// // @param b - byte slice
-// // @return int - the int value
-// func toInt(b []byte) int {
-// 	var result int
-// 	binary.Read(bytes.NewReader(b), binary.BigEndian, &result)
-// 	return result
-// }

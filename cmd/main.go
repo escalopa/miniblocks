@@ -5,6 +5,7 @@ import (
 
 	"github.com/escalopa/myblocks/badger"
 	"github.com/escalopa/myblocks/blockchain"
+	"github.com/escalopa/myblocks/cobra"
 )
 
 const (
@@ -25,16 +26,10 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = bc.AddBlock("First Block")
+
+	cmd, err := cobra.New(bc)
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = bc.AddBlock("Second Block")
-	if err != nil {
-		log.Fatal(err)
-	}
-	err = bc.AddBlock("Third Block")
-	if err != nil {
-		log.Fatal(err)
-	}
+	cmd.Run()
 }

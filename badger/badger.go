@@ -15,7 +15,9 @@ type BadgerDB struct {
 // @return *BadgerDB - The new BadgerDB instance
 // @return error - Any error that occurs
 func New(path string) (*BadgerDB, error) {
-	db, err := badger.Open(badger.DefaultOptions(path))
+	opts := badger.DefaultOptions(path)
+	opts.Logger = nil
+	db, err := badger.Open(opts)
 	if err != nil {
 		return nil, err
 	}
@@ -53,15 +55,15 @@ func (b *BadgerDB) SaveBlock(block *pkg.Block) error {
 // @return block - The block
 // @return error - Any error that occurs
 func (b *BadgerDB) GetBlock(hash []byte) (*pkg.Block, error) {
-	var block *pkg.Block
+	block := &pkg.Block{}
 	err := b.db.View(func(txn *badger.Txn) error {
 		item, err := txn.Get(hash)
 		if err != nil {
 			return err
 		}
 		err = item.Value(func(val []byte) error {
-			hash := append([]byte{}, val...)
-			_, err = block.Deserialize(hash)
+			data := append([]byte{}, val...)
+			err = block.Deserialize(data)
 			return err
 		})
 		return err
