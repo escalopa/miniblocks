@@ -1,4 +1,4 @@
-module github.com/escalopa/myblocks
+module github.com/escalopa/miniblocks
 
 go 1.19
 

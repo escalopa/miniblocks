@@ -9,7 +9,7 @@ import (
 	"math/big"
 	"strconv"
 
-	"github.com/escalopa/myblocks/pkg"
+	"github.com/escalopa/miniblocks/pkg"
 )
 
 type ProofOfWork struct {

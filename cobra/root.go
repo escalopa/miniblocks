@@ -3,7 +3,7 @@ package cobra
 import (
 	"log"
 
-	"github.com/escalopa/myblocks/application"
+	"github.com/escalopa/miniblocks/application"
 	"github.com/spf13/cobra"
 )
 

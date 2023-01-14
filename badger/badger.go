@@ -2,7 +2,7 @@ package badger
 
 import (
 	"github.com/dgraph-io/badger/v3"
-	"github.com/escalopa/myblocks/pkg"
+	"github.com/escalopa/miniblocks/pkg"
 )
 
 type BadgerDB struct {

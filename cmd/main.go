@@ -4,9 +4,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/escalopa/myblocks/badger"
-	"github.com/escalopa/myblocks/blockchain"
-	"github.com/escalopa/myblocks/cobra"
+	"github.com/escalopa/miniblocks/badger"
+	"github.com/escalopa/miniblocks/blockchain"
+	"github.com/escalopa/miniblocks/cobra"
 )
 
 const (

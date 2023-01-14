@@ -1,6 +1,6 @@
 package application
 
-import "github.com/escalopa/myblocks/pkg"
+import "github.com/escalopa/miniblocks/pkg"
 
 type IBlockchain interface {
 	AddBlock(data string) error

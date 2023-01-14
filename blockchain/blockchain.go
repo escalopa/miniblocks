@@ -3,8 +3,8 @@ package blockchain
 import (
 	"errors"
 
-	"github.com/escalopa/myblocks/application"
-	"github.com/escalopa/myblocks/pkg"
+	"github.com/escalopa/miniblocks/application"
+	"github.com/escalopa/miniblocks/pkg"
 )
 
 type Blockchain struct {
